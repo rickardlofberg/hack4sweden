@@ -75,7 +75,15 @@ def get_short_term_prognosis( ssyk ):
     return now, one_year
 
 def get_long_term_prognosis( ssyk ):    
-    pass
+    request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk))
+
+    # Convert to json
+    request_json = request.json()
+
+    # Get current demand and future demand in text format
+    five_year = request_json[0]["assessment5YearText"]
+
+    return five_year
 
 if __name__ == '__main__':
     search_text = input("Describe what you want to work with: ")
@@ -98,17 +106,9 @@ if __name__ == '__main__':
 
     # Get short term prognosis
     current_demand, one_year_demand = get_short_term_prognosis( best_job_ssyk )
+    five_year_demand = get_long_term_prognosis( best_job_ssyk )
 
-    print("
-    
-    
-    # Get longterm and shortterm prognosis
-    print(best_job_match)
-
-""""
-http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/221            
-
-            
-print(matches)
-print(best_match)
-"""
+    print("The prognosis for finding a job as a {} is: \n".format(best_job_match))
+    print("Current demand: {}".format(current_demand))
+    print("One year demand: {}".format(one_year_demand))
+    print("Five year demand: {}".format(five_year_demand))
