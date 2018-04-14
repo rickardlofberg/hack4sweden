@@ -25,4 +25,4 @@ To decrease the discrimination and increase opportunities for all people in the 
 Decrease overqualification on the job market / Matching skills better
 
 
-Creative Commons license
+License:Creative Commons license
