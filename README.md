@@ -5,6 +5,7 @@ Hack for Sweden 2018
  TEAM: The Breakfast Club
  Category: AI have a dream
  Challenge: Who Seeks Shall Find
+ [Example of code](./example.md)
  
  “Breaching the gap between newcomers and the job market by providing networking and job forecast.”
  
@@ -23,7 +24,5 @@ Build social networks relevant to skills e.g. Engineers finds engineers
 Vision:
 To decrease the discrimination and increase opportunities for all people in the society
 Decrease overqualification on the job market / Matching skills better
-
-Examples can be found under examples.md.
 
 License:Creative Commons license
