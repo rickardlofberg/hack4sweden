@@ -24,5 +24,6 @@ Vision:
 To decrease the discrimination and increase opportunities for all people in the society
 Decrease overqualification on the job market / Matching skills better
 
+Examples can be found under examples.md.
 
 License:Creative Commons license
