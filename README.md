@@ -5,7 +5,8 @@ Hack for Sweden 2018
  TEAM: The Breakfast Club
  Category: AI have a dream
  Challenge: Who Seeks Shall Find
- [Example of code](./example.md)
+ 
+ [Example of code](./examples.md)
  
  “Breaching the gap between newcomers and the job market by providing networking and job forecast.”
  
