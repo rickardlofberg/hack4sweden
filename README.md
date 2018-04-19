@@ -31,3 +31,12 @@ To decrease the discrimination and increase opportunities for all people in the 
 Decrease overqualification on the job market / Matching skills better
 
 **License:** [Creative Commons license](./LICENSE)
+
+# Instructions
+
+To try out the app (launch it locally) do the following:
+1. Download the git
+2. Unzip and go into directory
+3. pip install -r requierments.txt
+4. export FLASK_APP=h4s.py
+5. flask run
