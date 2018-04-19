@@ -2,8 +2,8 @@
 
 Hack for Sweden 2018
 
- TEAM: The Breakfast Club
- Category: AI have a dream
+ TEAM: The Breakfast Club <br />
+ Category: AI have a dream <br />
  Challenge: Who Seeks Shall Find
  
  
