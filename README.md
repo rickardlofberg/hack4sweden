@@ -39,4 +39,5 @@ To try out the app (launch it locally) do the following:
 2. Unzip and go into directory
 3. pip install -r requierments.txt
 4. export FLASK_APP=h4s.py
+4.1 export FLASK_DEBUG=1 (For debug mode)
 5. flask run
