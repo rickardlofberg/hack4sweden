@@ -40,7 +40,7 @@ class Forecaster:
 
         return job_to_ssyk, job_to_prognosis_id
 
-    def get_standard_job_names( self, job_name ):
+    def get_standard_job_name( self, job_name ):
         """ Take a non-standnard job name (not in taxonomy)
         and matches it to most similar job name in taxonomy """
         # The Job -> Ssyk dictionary
@@ -69,21 +69,6 @@ class Forecaster:
 
         # Return matching jobs
         return matchesa
-
-    def get_best_standard_job_name(self, job_name):
-        """ Return the job which has the best match to the
-        job we compare against. """
-
-        # FIX: Currently we only return the first match
-        # NOT THE BEST MATCH!
-        
-        matching_jobs = self.get_standard_job_names( job_name )
-        try:
-            # Assume the first job is the best (this is bad)
-            return matching_jobs[0]
-        except:
-            # Escape and return None if false
-            return None
 
     def get_short_term_prognosis( self, ssyk_number, output_format ):
         """ Return the short term prognosis for a given
