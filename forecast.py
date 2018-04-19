@@ -2,88 +2,164 @@ import requests
 import ontology as ont
 from distance import levenshtein as lev
 
-def get_jobs_to_ssyk():
-    """ Returns a dictionary with job titles as key_words and the
-    ssyk id as value. And a dictionary with job title as key_words
-    and prognosisID as value """
-    job_to_ssyk = dict()
-    #job_to_progons_id = dict()
-    
-    # Get all the information
-    request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalArea/forcastsRefs/list')
+class Forecaster:
 
-    # Convert to data
-    data = request.json()
-    
-    # Go through this table
-    for job in data[0]["occupationPrognosisRefs"]:
-        # Get the heading (job title) and ssykn
-        job_to_ssyk[job['heading'].lower()] = job['ssyk']
+    def __init__(self, url_to_forecast):
+        # Initiate the forecast object and get forecast data
+        self.job_ssyk, job_forecastId  = self.__forecast_init()
+        
+        
 
-        # break out into other function
-        # Get the heading (job title) and prognosisId
-        #job_to_progons_id[job['heading'].lower()] = job['prognosisId']
+    def __forecast_init(self):
+        """ Helper method to initiate the forecast object.
+        Returns a dictionary with ....
+        """
+        # If we don't send in url to get forecast data
+        if not url_to_forecast:
+            # Use this link manually
+            request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalArea/forcastsRefs/list')
+        else:
+            # Use given URL
+            requests = requests.get(url_to_forecast)
 
-    # This should possibly be broken into two functions
-    #return job_to_ssyk, job_to_progons_id
-    
-    return job_to_ssyk
+        # Avoid brekage if URL data is not correct
+        try:
+            # Read the data as json
+            data = request.json()
+        except:
+            # If URL is not correct, return None
+            return None
 
-    
+        # Ge through each jobtitle and create two dicts
+        # job_to_ssyk : job_title -> ssyk
+        # job_to_prognosis_id : job_title -> prognosis_id
+        for job in data[0]["occupationPrognosisRefs"]:
+            job_to_ssyk[job['heading'].lower()] = job['ssyk']
+            job_to_prognosis_id[job['heading'].lower()] = job['prognosisId']
+            
 
-def best_profession_job_name_match( job_to_ssyk, job_name ):
-    # The Job -> Ssyk dictionary
-    ssyk = job_to_ssyk
+        return job_to_ssyk, job_to_prognosis_id
 
-    # The jobtitle we are trying to match
-    job_to_match = job_name
+    def get_standard_job_names( self, job_name ):
+        """ Take a non-standnard job name (not in taxonomy)
+        and matches it to most similar job name in taxonomy """
+        # The Job -> Ssyk dictionary
+        ssyk = self.job_to_ssyk
 
-    # The score for the best match
-    best_match = 100.0
-    # The match(es) for that job
-    matches = []
+        # The jobtitle we are trying to match
+        job_to_match = job_name
 
-    for job_title in ssyk.keys():
-        # Split the title and clean it
-        for word in job_title.split():
-            w = word.strip(".,-_'* ")
+        # The score for the best match
+        # Start with a hundread to make sure we match
+        best_match = 100.0
+        
+        # The match(es) for that job
+        matches = []
 
-            if lev(w, job_to_match) < best_match:
-                best_match = lev(w, job_to_match)
-                matches = [job_title]
-            elif lev(w, job_to_match) == best_match:
-                matches.append(job_title)
+        for job_title in ssyk.keys():
+            # Split the title and clean it
+            for word in job_title.split():
+                w = word.strip(".,-_'* ")
 
-    # Return the FIRST MATCH, IT SHOULD RETURN THE BEST MATCH!
-    # This needs to be updated...
-    if len(matches) != 0:
-        return matches[0]
-    
-    # Return the matches for the search
-    return matches
+                if lev(w, job_to_match) < best_match:
+                    best_match = lev(w, job_to_match)
+                    matches = [job_title]
+                elif lev(w, job_to_match) == best_match:
+                    matches.append(job_title)
 
-def get_short_term_prognosis( ssyk ):
-    request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk))
+        # Return matching jobs
+        return matchesa
 
-    # Convert to json
-    request_json = request.json()
+    def get_best_standard_job_name(self, job_name):
+        """ Return the job which has the best match to the
+        job we compare against. """
 
-    # Get current demand and future demand in text format
-    now = request_json[0]["assessmentNowText"]
-    one_year = request_json[0]["assessment1yearText"] 
-    
-    return now, one_year
+        # FIX: Currently we only return the first match
+        # NOT THE BEST MATCH!
+        
+        matching_jobs = self.get_standard_job_names( job_name )
+        try:
+            # Assume the first job is the best (this is bad)
+            return matching_jobs[0]
+        except:
+            # Escape and return None if false
+            return None
 
-def get_long_term_prognosis( ssyk ):    
-    request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk))
+    def get_short_term_prognosis( self, ssyk_number, output_format ):
+        """ Return the short term prognosis for a given
+        ssyk_number. 
 
-    # Convert to json
-    request_json = request.json()
+        """
+        # A dictionary to change from whether we want text or number
+        options = { 'text' :
+                    { 'now' : 'assessmentNowText',
+                      'one' : 'assessment1yearText'},
+                    'number' :
+                    { 'now' : '',
+                      'one' : ''}
+                    }
 
-    # Get current demand and future demand in text format
-    five_year = request_json[0]["assessment5YearText"]
+        # If we can't find the output option in the given output
+        # formats return None
+        if options.get(output_format, -1) == -1:
+            return None
+        
+        # Get the data for the ssyk
+        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk))
 
-    return five_year
+        # NOTE: The below is done in serveral places, break out
+        # into its own method?
+        # Convert to json
+        try:
+            request_json = request.json()
+        except:
+            # Make sure it works
+            return None
+
+        # Get which format we want the output in
+        now_out_format = options[output_format]['now']
+        one_out_format = options[output_format]['one']
+
+        # Get the demand for the given format
+        now = request_json[0][now_out_format]
+        one_year = request_json[0][one_out_format]
+
+        return now, one_year
+
+    def get_long_term_prognosis( self, ssyk_number, output_format ):
+        """ Given ssyk_number returns the long term (five year)
+        prognosis in output format given as output_format """
+
+        # A dictionary to change from whether we want text or number
+        options = { 'text' :
+                    { 'five' : 'assessment5YearText'},
+                    'number' :
+                    { 'five' : ''}
+        }
+
+        # If we can't find the output option in the given output
+        # formats return None
+        if options.get(output_format, -1) == -1:
+            return None
+        
+        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk))
+
+        # NOTE: The below is done in serveral places, break out
+        # into its own method?
+        # Convert to json
+        try:
+            request_json = request.json()
+        except:
+            # Make sure it works
+            return None
+
+        # Get which format we want the output in
+        now_out_format = options[output_format]['five']
+
+        # Get current demand and future demand in text format
+        five_year = request_json[0][now_out_format]
+
+        return five_year
 
 if __name__ == '__main__':
     search_text = input("Describe what you want to work with: ")
