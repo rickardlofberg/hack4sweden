@@ -94,4 +94,6 @@ if __name__ == '__main__':
 
     for job in jobs:
         print(job)
-
+    
+    if not jobs:
+        print("We couldn't find a job to match your skills, try something different!")
