@@ -19,7 +19,7 @@ A third of newcomers have an education equal to or higher than gymnasiet (have a
 Club activities like sports or other volunteering supports building social networks, that can lead to finding relevant contacts within a one’s field of work. It also helps developing language skills. So, not only is properly guided job seeking important but so is associative time, where networking can enable connecting with the right people. This can increase better matchmaking between job and skills (decrease overqualification).
 
 
-Tech: API Data from Arbetsförmedlingen, SCB and maybe migrationsverket? PHP and python User interface: Javascript, JQuery, Bootstrap
+Tech: API Data from Arbetsförmedlingen (Ontologi & Job forcast), SCB and maybe migrationsverket? PHP and python User interface: Javascript, JQuery, Bootstrap
 
 Target audience: Job seeking newcomers.
 

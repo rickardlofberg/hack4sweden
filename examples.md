@@ -1,6 +1,6 @@
 # Examples of the code
 
-This is a proof of concept on how we can query the different API:s to combine the data and ger results.
+This is a proof of concept on how we can query the different API:s to combine the data and get results.
 
 
 # Table of Contents
