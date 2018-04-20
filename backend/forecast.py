@@ -4,23 +4,21 @@ from distance import levenshtein as lev
 
 class Forecaster:
 
-    def __init__(self, url_to_forecast):
+    def __init__(self, url_to_forecast='http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalArea/forcastsRefs/list'):
         # Initiate the forecast object and get forecast data
-        self.job_ssyk, job_forecastId  = self.__forecast_init()
+        self.job_ssyk, self.job_forecastId  = self.__forecast_init( url_to_forecast )
         
         
 
-    def __forecast_init(self):
+    def __forecast_init(self, url_to_forecast):
         """ Helper method to initiate the forecast object.
         Returns a dictionary with ....
         """
-        # If we don't send in url to get forecast data
-        if not url_to_forecast:
-            # Use this link manually
-            request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalArea/forcastsRefs/list')
-        else:
-            # Use given URL
-            requests = requests.get(url_to_forecast)
+        # job_to_ssyk and job_to_prog dicts
+        job_to_ssyk = dict()
+        job_to_prognosis_id = dict()
+        
+        request = requests.get(url_to_forecast)
 
         # Avoid brekage if URL data is not correct
         try:
@@ -52,6 +50,7 @@ class Forecaster:
         # The score for the best match
         # Start with a hundread to make sure we match
         best_match = 100.0
+
         
         # The match(es) for that job
         matches = []
@@ -70,7 +69,7 @@ class Forecaster:
         # Return matching jobs
         return matchesa
 
-    def get_short_term_prognosis( self, ssyk_number, output_format ):
+    def get_short_term_prognosis( self, ssyk_number, output_format='text' ):
         """ Return the short term prognosis for a given
         ssyk_number. 
 
@@ -111,7 +110,7 @@ class Forecaster:
 
         return now, one_year
 
-    def get_long_term_prognosis( self, ssyk_number, output_format ):
+    def get_long_term_prognosis( self, ssyk_number, output_format='text' ):
         """ Given ssyk_number returns the long term (five year)
         prognosis in output format given as output_format """
 
