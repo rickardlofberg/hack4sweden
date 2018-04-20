@@ -18,7 +18,9 @@ class SearchInterface:
         # The standardized job title
         self.taxonomy_job = ''
         # The forecast for the standardized job title
-        self.taxonomy_job_forecast = []
+        self.current_year_forecast = ''
+        self.one_year_forecast = ''
+        self.five_year_forecast = ''
 
         # Create Forecaster object.
         self.forecaster = forecast.Forecaster()
@@ -28,7 +30,7 @@ class SearchInterface:
         variables with matching data """
 
         # Set the lateset search
-        self.self.latest_query = search_query
+        self.latest_query = search_query
 
         # Get the top jobs and sort them according to relevance
         self.top_jobs = ontology.get_possible_jobs( search_query )
@@ -37,10 +39,37 @@ class SearchInterface:
         # If we have correct results
         if len(self.top_jobs) > 0:
             # Set the top job
-            self.top_job = top_jobs[0][0]
+            self.top_job = self.top_jobs[0][0]
             # Get the best matching job in taxonomy
-            self.taxonomy_job = self.forecaster.get_best_standard_job_name( self.top_job )
+            self.taxonomy_job = self.forecaster.get_standard_job_name( self.top_job )
 
-            # HERE WE SHOULD ALSO UPDATE THE FORECAST
-            # AND MEETUP STUFF
-        
+            ssyk = self.forecaster.job_ssyk[self.taxonomy_job]
+
+            self.current_year_forecast, self.one_year_forecast = self.forcaster.get_short_term_prognosis( ssyk )
+            self.five_year_forecast = self.forecaster.get_long_term_prognosis( ssyk )
+
+        # HERE WE SHOULD ALSO UPDATE THE FORECAST
+        # AND MEETUP STUFF
+
+
+
+if __name__ == '__main__':
+    # Run this code for debugging
+    s = SearchInterface():
+    
+    while True:
+        query = input("What would you like to serach for? ")
+
+        # Search for query
+        s.search_job( query )
+
+        # Print results
+        print("You searched for: {}".format(s.latest_query))
+        print("Matching jobs are:")
+        for job in s.top_jobs:
+            print(job)
+        print()
+        print("Best match in taxonomy is: {}".format(s.taxonomy_job))
+        print("The current prognosis for job is: {}".format(s.current_year_forecast))
+        print("The one year prognosis for job is: {}".format(s.one_year_forecast))
+        print("The five year prognosis for job is: {}".format(s.five_year_forecast))
