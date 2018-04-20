@@ -42,7 +42,7 @@ class Forecaster:
         """ Take a non-standnard job name (not in taxonomy)
         and matches it to most similar job name in taxonomy """
         # The Job -> Ssyk dictionary
-        ssyk = self.job_to_ssyk
+        ssyk = self.job_ssyk
 
         # The jobtitle we are trying to match
         job_to_match = job_name
@@ -67,7 +67,7 @@ class Forecaster:
                     matches.append(job_title)
 
         # Return matching jobs
-        return matchesa
+        return matches
 
     def get_short_term_prognosis( self, ssyk_number, output_format='text' ):
         """ Return the short term prognosis for a given
@@ -89,7 +89,7 @@ class Forecaster:
             return None
         
         # Get the data for the ssyk
-        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk))
+        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
 
         # NOTE: The below is done in serveral places, break out
         # into its own method?
@@ -126,7 +126,7 @@ class Forecaster:
         if options.get(output_format, -1) == -1:
             return None
         
-        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk))
+        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk_number))
 
         # NOTE: The below is done in serveral places, break out
         # into its own method?
@@ -172,3 +172,4 @@ if __name__ == '__main__':
     print("Current demand: {}".format(current_demand))
     print("One year demand: {}".format(one_year_demand))
     print("Five year demand: {}".format(five_year_demand))
+    print()

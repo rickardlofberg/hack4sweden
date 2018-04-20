@@ -17,6 +17,8 @@ class SearchInterface:
         self.top_job = ''
         # The standardized job title
         self.taxonomy_job = ''
+        # Set SSYK for taxonomy job
+        self.ssyk = ''        
         # The forecast for the standardized job title
         self.current_year_forecast = ''
         self.one_year_forecast = ''
@@ -41,12 +43,14 @@ class SearchInterface:
             # Set the top job
             self.top_job = self.top_jobs[0][0]
             # Get the best matching job in taxonomy
-            self.taxonomy_job = self.forecaster.get_standard_job_name( self.top_job )
+            self.taxonomy_jobs = self.forecaster.get_standard_job_name( self.top_job )
+            # Get the first job in list
+            self.taxonomy_job = self.taxonomy_jobs[0]
 
-            ssyk = self.forecaster.job_ssyk[self.taxonomy_job]
+            self.ssyk = self.forecaster.job_ssyk[self.taxonomy_job]
 
-            self.current_year_forecast, self.one_year_forecast = self.forcaster.get_short_term_prognosis( ssyk )
-            self.five_year_forecast = self.forecaster.get_long_term_prognosis( ssyk )
+            self.current_year_forecast, self.one_year_forecast = self.forecaster.get_short_term_prognosis( self.ssyk )
+            self.five_year_forecast = self.forecaster.get_long_term_prognosis( self.ssyk )
 
         # HERE WE SHOULD ALSO UPDATE THE FORECAST
         # AND MEETUP STUFF
@@ -55,7 +59,7 @@ class SearchInterface:
 
 if __name__ == '__main__':
     # Run this code for debugging
-    s = SearchInterface():
+    s = SearchInterface()
     
     while True:
         query = input("What would you like to serach for? ")
@@ -73,3 +77,4 @@ if __name__ == '__main__':
         print("The current prognosis for job is: {}".format(s.current_year_forecast))
         print("The one year prognosis for job is: {}".format(s.one_year_forecast))
         print("The five year prognosis for job is: {}".format(s.five_year_forecast))
+        print()
