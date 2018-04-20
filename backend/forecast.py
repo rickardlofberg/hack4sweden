@@ -28,7 +28,7 @@ class Forecaster:
             # If URL is not correct, return None
             return None
 
-        # Ge through each jobtitle and create two dicts
+        # Go through each jobtitle and create two dicts
         # job_to_ssyk : job_title -> ssyk
         # job_to_prognosis_id : job_title -> prognosis_id
         for job in data[0]["occupationPrognosisRefs"]:
@@ -48,7 +48,7 @@ class Forecaster:
         job_to_match = job_name
 
         # The score for the best match
-        # Start with a hundread to make sure we match
+        # Start with a hundred to make sure we match
         best_match = 100.0
 
         
