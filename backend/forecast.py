@@ -69,81 +69,51 @@ class Forecaster:
         # Return matching jobs
         return matches
 
-    def get_short_term_prognosis( self, ssyk_number, output_format='text' ):
-        """ Return the short term prognosis for a given
-        ssyk_number. 
-
-        """
-        # A dictionary to change from whether we want text or number
-        options = { 'text' :
+    def get_prognosis( self, ssyk_number, output_format='text', option='' ):
+        """ Given ssyk_number and a time option returns the prognosis for this 
+        year (now, one, five years) in output format given as output_format """
+        # If the prognosis time option is not available print an error message and return none.
+        if option=='five':
+            # A dictionary to change from whether we want text or number
+            options = { 'text' :
+                        { 'five' : 'assessment5YearText'},
+                        'number' :
+                        { 'five' : ''}
+                        }
+            request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk_number))
+        elif option=='one':
+            options = { 'text' :
+                        { 'one' : 'assessment1yearText'},
+                        'number' :
+                        { 'one' : ''}
+                        }
+            request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
+        elif option=='now':
+            options = { 'text' :
                     { 'now' : 'assessmentNowText',
-                      'one' : 'assessment1yearText'},
                     'number' :
-                    { 'now' : '',
-                      'one' : ''}
+                    { 'now' : ''}
                     }
+                    }
+            request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
+        else:
+                print('The prognosis time for', option,'is not available.')
+                return None
 
-        # If we can't find the output option in the given output
-        # formats return None
-        if options.get(output_format, -1) == -1:
-            return None
-        
-        # Get the data for the ssyk
-        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
-
-        # NOTE: The below is done in serveral places, break out
-        # into its own method?
         # Convert to json
         try:
             request_json = request.json()
         except:
             # Make sure it works
             return None
-
+    
         # Get which format we want the output in
-        now_out_format = options[output_format]['now']
-        one_out_format = options[output_format]['one']
-
-        # Get the demand for the given format
-        now = request_json[0][now_out_format]
-        one_year = request_json[0][one_out_format]
-
-        return now, one_year
-
-    def get_long_term_prognosis( self, ssyk_number, output_format='text' ):
-        """ Given ssyk_number returns the long term (five year)
-        prognosis in output format given as output_format """
-
-        # A dictionary to change from whether we want text or number
-        options = { 'text' :
-                    { 'five' : 'assessment5YearText'},
-                    'number' :
-                    { 'five' : ''}
-        }
-
-        # If we can't find the output option in the given output
-        # formats return None
-        if options.get(output_format, -1) == -1:
-            return None
-        
-        request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk_number))
-
-        # NOTE: The below is done in serveral places, break out
-        # into its own method?
-        # Convert to json
-        try:
-            request_json = request.json()
-        except:
-            # Make sure it works
-            return None
-
-        # Get which format we want the output in
-        now_out_format = options[output_format]['five']
+        out_format = options[output_format][option]
 
         # Get current demand and future demand in text format
-        five_year = request_json[0][now_out_format]
+        year = request_json[0][out_format]
+        return year   	
 
-        return five_year
 
 if __name__ == '__main__':
     search_text = input("Describe what you want to work with: ")
@@ -165,8 +135,9 @@ if __name__ == '__main__':
     best_job_ssyk = job_to_ssyk[best_job_match]
 
     # Get short term prognosis
-    current_demand, one_year_demand = get_short_term_prognosis( best_job_ssyk )
-    five_year_demand = get_long_term_prognosis( best_job_ssyk )
+    current_year_demand = get_prognosis( best_job_ssyk, 'now' )
+    one_year_demand = get_prognosis( best_job_ssyk, 'one' )
+    five_year_demand = get_prognosis( best_job_ssyk, 'five' )
 
     print("The prognosis for finding a job as a {} is: \n".format(best_job_match))
     print("Current demand: {}".format(current_demand))

@@ -49,8 +49,12 @@ class SearchInterface:
 
             self.ssyk = self.forecaster.job_ssyk[self.taxonomy_job]
 
-            self.current_year_forecast, self.one_year_forecast = self.forecaster.get_short_term_prognosis( self.ssyk )
-            self.five_year_forecast = self.forecaster.get_long_term_prognosis( self.ssyk )
+            self.current_year_forecast = self.forecaster.get_prognosis( self.ssyk, option='now' )
+            self.one_year_forecast = self.forecaster.get_prognosis( self.ssyk, option='one' )
+            self.five_year_forecast = self.forecaster.get_prognosis( self.ssyk, option='five' )
+
+
+
 
         # HERE WE SHOULD ALSO UPDATE THE FORECAST
         # AND MEETUP STUFF
