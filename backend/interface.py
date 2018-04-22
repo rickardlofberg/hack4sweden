@@ -66,7 +66,10 @@ if __name__ == '__main__':
     s = SearchInterface()
     
     while True:
-        query = input("What would you like to search for? ")
+        query = input("What would you like to search for? (Enter 'q' to quit)  ")
+
+        if query == "q": 
+            break
 
         # Search for query
         s.search_job( query )
