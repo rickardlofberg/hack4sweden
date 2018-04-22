@@ -1,5 +1,6 @@
 import forecast
 import ontology
+import meetup
 
 
 class SearchInterface:
@@ -23,6 +24,8 @@ class SearchInterface:
         self.current_year_forecast = ''
         self.one_year_forecast = ''
         self.five_year_forecast = ''
+        # Meetup events based on matched job tittle 
+        self.meetup_events = ''
 
         # Create Forecaster object.
         self.forecaster = forecast.Forecaster()
@@ -37,6 +40,9 @@ class SearchInterface:
         # Get the top jobs and sort them according to relevance
         self.top_jobs = ontology.get_possible_jobs( search_query )
         self.top_jobs.sort(key=lambda x: x[1], reverse=True)
+
+        # Geet meetup events using matched job tittle
+        self.meetup_events = meetup.get_events(search_query)
 
         # If we have correct results
         if len(self.top_jobs) > 0:
@@ -55,9 +61,7 @@ class SearchInterface:
 
 
 
-
         # HERE WE SHOULD ALSO UPDATE THE FORECAST
-        # AND MEETUP STUFF
 
 
 
@@ -84,4 +88,6 @@ if __name__ == '__main__':
         print("The current prognosis for job is: {}".format(s.current_year_forecast))
         print("The one year prognosis for job is: {}".format(s.one_year_forecast))
         print("The five year prognosis for job is: {}".format(s.five_year_forecast))
+        print()
+        print("Meetup events near you: {}".format(s.meetup_events))
         print()
