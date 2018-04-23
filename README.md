@@ -7,7 +7,7 @@ Hack for Sweden 2018
  **Challenge**: Who Seeks Shall Find
  
  
- Example code not up to date!
+ Example code IS up to date!
  
  [Example of code](./examples.md)
  
