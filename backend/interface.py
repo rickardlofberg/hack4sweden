@@ -73,6 +73,7 @@ if __name__ == '__main__':
         query = input("What would you like to search for? (Enter 'q' to quit)  ")
 
         if query == "q": 
+            print("Thank you for using our service! Goodbye ")
             break
 
         # Search for query
@@ -80,6 +81,7 @@ if __name__ == '__main__':
 
         # Print results
         print("You searched for: {}".format(s.latest_query))
+        print()
         print("Matching jobs are:")
         for job in s.top_jobs:
             print(job)
