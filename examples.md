@@ -28,7 +28,8 @@ This is a proof of concept on how we can query the different API:s to combine th
 
     Matching jobs are:
 
-    ('linuxguru', 0.8447319496011734)('mjukvaruutvecklare', 0.805481334954387)
+    ('linuxguru', 0.8447319496011734)
+    ('mjukvaruutvecklare', 0.805481334954387)
     ('telekomtestare', 0.7965281548511152)
     ('testutvecklare', 0.7921523748331608)
     ('testare', 0.774033054051613)
