@@ -1,6 +1,7 @@
 import forecast
 import ontology
 import meetup
+import json
 
 
 class SearchInterface:
@@ -91,5 +92,15 @@ if __name__ == '__main__':
         print("The one year prognosis for job is: {}".format(s.one_year_forecast))
         print("The five year prognosis for job is: {}".format(s.five_year_forecast))
         print()
-        print("Meetup events near you: {}".format(s.meetup_events))
-        print()
+
+        r = json.dumps(s.meetup_events)
+        jsonObjectInfo = json.loads(r)
+        print("Showing events located in {0}".format(jsonObjectInfo["city"]["city"]))
+        for eachJsonObject in jsonObjectInfo['events']:
+            print("Event name:  {0}".format(eachJsonObject["name"]))
+            print("Event date:  {0}".format(eachJsonObject["local_date"]))
+            #print("Meetup description:  {0}".format(eachJsonObject["description"]))   OPTIONAL - CURRENT DISABLED DUE TO ALOT OF TEXT OUTPUT
+            print("Link to meetup:  {0}".format(eachJsonObject["link"]))
+            print()
+            print("-----------------**************---------------")
+            print()
