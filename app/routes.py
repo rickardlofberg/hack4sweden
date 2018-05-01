@@ -3,8 +3,8 @@ from flask import render_template,request
 from app import app
 import sys
 #get the path toward the backend folder
-sys.path.insert(0, '..')
-from backend.interface import SearchInterface
+sys.path.insert(0, './backend')
+from interface import SearchInterface
 
 @app.route('/')
 @app.route('/index')
