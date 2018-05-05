@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h3> Best job match: </h3>
+<ul>
+  <li>
+    {{ interface.top_job }}
+  </li>
+</ul>
+<h3> Other jobs: </h3>
+<ul>
+  {% for job in interface.top_jobs[1:] %}
+    <li> {{ job[0] }} </li>
+  {% endfor %}
+</ul>
+
+<h2> Taxonomy job </h2>
+<ul>
+  <li>
+    {{ interface.taxonomy_job }}
+  </li>
+</ul>
+
+<h2> Current forecast </h2>
+<p>
+  {{ interface.current_year_forecast }}
+</p>
+
+<h2> One year forecast </h2>
+<p>
+  {{ interface.one_year_forecast }}
+</p>
+
+<h2> Five year forecast </h2>
+<p>
+  {{ interface.five_year_forecast }}
+</p>
+
+<h2>Events nära dig</h2>
+
+{% endblock %}
