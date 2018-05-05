@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>
-  Write a skill below:
-  <form method="POST">
-    <input name="text">
-    <input type="submit">
-</form>
 
-</h1>
+<h1> Write a skill below: </h1>
+
+<form action="/index" method="POST">
+  {{ form.hidden_tag() }}
+  
+  <p>
+    {{ form.query.label }} <br>
+    {{ form.query(size=32) }}
+  </p>
+
+    <p>
+      {{ form.search() }}
+    </p>
+  </form>
+
 {% endblock %}
