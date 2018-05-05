@@ -6,15 +6,14 @@
 
 <form action="/index" method="POST">
   {{ form.hidden_tag() }}
-  
-  <p>
-    {{ form.query.label }} <br>
-    {{ form.query(size=32) }}
-  </p>
 
-    <p>
-      {{ form.search() }}
-    </p>
-  </form>
+  <div class="input-group input-group-lg">
+    <span class="input-group-addon" id="sizing-addon1">
+    {{ form.query(size=32) }}
+    {{ form.search() }}
+    </span>
+  </div>
+
+</form>
 
 {% endblock %}

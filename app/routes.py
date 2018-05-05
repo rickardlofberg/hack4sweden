@@ -16,3 +16,6 @@ def index():
         return render_template('results.html', interface=interface)
     return render_template('index.html', title='Sign In', form=form)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
