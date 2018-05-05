@@ -1,6 +1,6 @@
-import forecast
-import ontology
-import meetup
+import app.backend.forecast
+import app.backend.ontology
+import app.backend.meetup
 import json
 
 
