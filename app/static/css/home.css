@@ -1,0 +1,536 @@
+body{
+    font-family: sans-serif;
+}
+
+.mainContainer {
+    position: relative;
+    width: 50%;
+}
+
+
+/* search function css starts */
+#searchInputField{
+    margin-right: 50px;
+    
+}
+
+#searchResult{
+    position: absolute;
+    margin-left: -40px;
+    width: 400px;
+}
+
+#searchResult ul li img{
+    width: 50px; 
+}
+
+
+#searchResult ul li{
+    list-style: none;
+    padding: 5px;
+    background-color: #222222;
+}
+
+#searchResult ul li:hover{
+    background-color: grey;
+
+}
+
+#searchResult ul li a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+.inputField{
+    width: 350px;
+    color: black;
+    border-radius: 10px;
+    border: 0px;
+    padding: 5px;
+}
+
+/* search function css ends */
+
+footer {
+	height:100px;
+	text-align:center;
+	padding-top:25px;
+}
+
+footer > a{
+	height:100px;
+	text-align:center;
+	padding: 20px;
+    
+}
+
+a {
+	color:#9d9d9d;
+	text-decoration:none;
+}
+
+a:hover{
+    color: white;
+}
+
+#startContainer {
+left:0; 
+right:0;  
+top:0;
+margin: 0;
+padding: 0;
+display:flex;
+flex: wrap;
+flex-direction: column; 
+width: 100%;
+}
+
+.navbar-brand{
+    margin-top: -2px;
+    
+}
+
+.navbar{
+    border-radius: 0px;
+}
+
+.container-fluid{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-menu > li > a{
+    color: #6b6b6b;
+}
+
+.navbar-inverse{
+    background-color: #222222a3;
+    border: none;
+    
+}
+
+#headerId > .col-xs-1{padding-right: 0; padding-left: 5px;}
+
+
+#headerId {
+	 height:50px;
+	 color:white;
+	 background-color:black;
+	 justify-content:center; 
+	 align-items: center;
+      margin:0;
+}
+
+.meetingClassContainer {
+    height: 70px;
+    width: 150px;
+	font-size:25px;
+	padding-top:40px;
+    padding-left:50px;
+    border: 1px solid goldenrod;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .flex-container > div {
+    height: 150px;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+
+
+.backgroundImg {
+        left:0; 
+        right:0; 
+        padding: 0;
+        margin: 0;
+        height: 400px;
+}
+
+#imgId { 
+        border: none;
+        height: 400px;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+}
+    
+.centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+
+    
+body{
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+
+/* search function css starts */
+#searchInputField{
+    margin-right: 50px;
+    
+}
+
+#searchResult{
+    position: absolute;
+    margin-left: -40px;
+    width: 400px;
+}
+
+#searchResult ul li img{
+    width: 50px; 
+}
+
+
+#searchResult ul li{
+    list-style: none;
+    padding: 5px;
+    background-color: #222222;
+}
+
+#searchResult ul li:hover{
+    background-color: grey;
+
+}
+
+.text{
+    margin: 5px;
+    font-size: 12px;
+}
+
+#searchResult ul li a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+.inputField{
+    width: 350px;
+    color: black;
+    border-radius: 10px;
+    border: 0px;
+    padding: 5px;
+}
+
+/* search function css ends */
+
+
+#divLi {
+    height: 50px;
+    width: 50px;
+}
+
+footer {
+	height:100px;
+	text-align:center;
+	padding-top:25px;
+}
+
+footer > a{
+	height:100px;
+	text-align:center;
+	padding: 20px;
+    
+}
+
+a {
+	color:#9d9d9d;
+	text-decoration:none;
+}
+
+a:hover{
+    color: white;
+}
+
+#startContainer {
+left:0; 
+right:0;  
+top:0;
+margin: 0;
+padding: 0;
+display:flex;
+flex: wrap;
+flex-direction: column; 
+width: 100%;
+}
+
+
+.navbar-brand{
+    margin-top: -2px;
+    
+}
+
+.navbar{
+    border-radius: 0px;
+}
+
+.container-fluid{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-menu > li > a{
+    color: #6b6b6b;
+}
+
+.navbar-inverse{
+    background-color: #222222a3;
+    border: none;
+    
+}
+
+#headerId > .col-xs-1{padding-right: 0; padding-left: 5px;}
+
+#headerId {
+	 height:50px;
+	 color:white;
+	 background-color:black;
+	 justify-content:center; 
+	 align-items: center;
+      margin:0;
+}
+
+.meetingClassContainer {
+    height: 70px;
+    width: 150px;
+	font-size:25px;
+	padding-top:40px;
+    padding-left:50px;
+    border: 1px solid goldenrod;
+	
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .flex-container > div {
+    height: 150px;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+
+#imgId { 
+        border: none;
+        height: 400px;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+}
+
+}
+
+
+@media only screen and (min-width: 1064px) {
+
+body{
+    font-family: monospace;
+}
+
+.mainContainer {
+    position: relative;
+    width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middleSearch {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.mainContainer:hover .image {
+  opacity: 0.3;
+}
+
+.mainContainer:hover .middleSearch {
+  opacity: 1;
+}
+
+
+
+/* search function css starts */
+#searchInputField{
+    margin-right: 50px;
+    
+}
+
+#searchResult{
+    position: absolute;
+    margin-left: -40px;
+    width: 400px;
+}
+
+#searchResult ul li img{
+    width: 50px; 
+}
+
+
+#searchResult ul li{
+    list-style: none;
+    padding: 5px;
+    background-color: #222222;
+}
+
+#searchResult ul li:hover{
+    background-color: grey;
+
+}
+
+
+#searchResult ul li a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+.inputField{
+    width: 350px;
+    color: black;
+    border-radius: 10px;
+    border: 0px;
+    padding: 5px;
+}
+
+/* search function css ends */
+
+
+footer {
+	height:100px;
+	text-align:center;
+	padding-top:25px;
+}
+
+footer > a{
+	height:100px;
+	text-align:center;
+	padding: 20px;  
+}
+
+a {
+	color:#9d9d9d;
+	text-decoration:none;
+}
+
+a:hover{
+    color: white;
+}
+
+#startContainer {
+left:0; 
+right:0;  
+top:0;
+margin: 0;
+padding: 0;
+display:flex;
+flex: wrap;
+flex-direction: column; 
+width: 100%;
+}
+
+
+
+.navbar-brand{
+    margin-top: -2px;
+    
+}
+
+.navbar{
+    border-radius: 0px;
+}
+
+.container-fluid{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-menu > li > a{
+    color: #6b6b6b;
+}
+
+.navbar-inverse{
+    background-color: #222222a3;
+    border: none;
+    
+}
+
+.left {
+    float:left;
+}
+
+/*End Bootstrap lovisa Header css*/
+#headerId > .col-xs-1{padding-right: 0; padding-left: 5px;}
+
+
+#headerId {
+	 height:50px;
+	 color:white;
+	 background-color:black;
+	 justify-content:center; 
+	 align-items: center;
+      margin:0;
+}
+    
+.centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+}
+
+.meetingClassContainer {
+    height: 70px;
+    width: 150px;
+	font-size:25px;
+	padding-top:40px;
+    padding-left:50px;
+    border: 1px solid goldenrod;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .flex-container > div {
+    height: 150px;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+}
