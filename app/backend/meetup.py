@@ -3,7 +3,7 @@ from meetup_key import my_key
 
 def get_events( text ):
     key = my_key             
-    radius = "50"
+    radius = "100"
     data = requests.get("https://api.meetup.com/find/upcoming_events?&key={}&sign=true&photo-host=public&page=20&text={}&radius={}".format(key, text, radius))
 
     events = data.json()

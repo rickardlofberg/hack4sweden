@@ -56,20 +56,52 @@
 	    </li>
 	  </ul>
 
-	  <h3> Current forecast </h3>
-	  <p>
-	    {{ interface.current_year_forecast }}
-	  </p>
+	  <h3> Forecast </h3>
+	  <row>
+	    Currently:
+	    <div class="col-xs-12 col-md-12 col-lg-12">
+	      <div class="progress">
+		<!-- Use the interface data to update values -->
+		<div class="progress-bar progress-bar-info"
+		     role="progressbar" aria-valuenow="{{ interface.current_year_forecast_number }}"
+		     aria-valuemin="0" aria-valuemax="100"
+		     style="width:{{ interface.current_year_forecast_number }}%">
+		  {{ interface.current_year_forecast }}
+		</div>
+	      </div>
+	    </div>
+	  </row>
 
-	  <h3> One year forecast </h3>
-	  <p>
-	    {{ interface.one_year_forecast }}
-	  </p>
+	  <row>
+	    One year:
+	    <div class="col-xs-12 col-md-12 col-lg-12">
+	      <div class="progress">
+		<!-- Use the interface data to update values -->
+		<div class="progress-bar progress-bar-info"
+		     role="progressbar" aria-valuenow="{{ interface.one_year_forecast_number }}"
+		     aria-valuemin="0" aria-valuemax="100"
+		     style="width:{{ interface.one_year_forecast_number }}%">
+		  {{ interface.one_year_forecast }}
+		</div>
+	      </div>
+	    </div>
+	  </row>
 
-	  <h3> Five year forecast </h3>
-	  <p>
-	    {{ interface.five_year_forecast }}
-	  </p>
+	  <row>
+	    Five years:
+	    <div class="col-xs-12 col-md-12 col-lg-12">
+	      <div class="progress">
+		<!-- Use the interface data to update values -->
+		<div class="progress-bar progress-bar-info"
+		     role="progressbar" aria-valuenow="{{ interface.five_year_forecast_number }}"
+		     aria-valuemin="0" aria-valuemax="100"
+		     style="width:{{ interface.five_year_forecast_number }}%">
+		  {{ interface.five_year_forecast }}
+		</div>
+	      </div>
+	    </div>
+	  </row>
+
 	</div>
 	<!-- End: Left side of the right side -->
 

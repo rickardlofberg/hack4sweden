@@ -79,22 +79,21 @@ class Forecaster:
             options = { 'text' :
                         { 'five' : 'assessment5YearText'},
                         'number' :
-                        { 'five' : ''}
+                        { 'five' : 'assessment5Year'}
                         }
             request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/longTerm/{}'.format(ssyk_number))
         elif option=='one':
             options = { 'text' :
                         { 'one' : 'assessment1yearText'},
                         'number' :
-                        { 'one' : ''}
+                        { 'one' : 'assessment1year'}
                         }
             request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
         elif option=='now':
             options = { 'text' :
-                    { 'now' : 'assessmentNowText',
+                        { 'now' : 'assessmentNowText'},
                     'number' :
-                    { 'now' : ''}
-                    }
+                    { 'now' : 'assessmentNow'}
                     }
             request = requests.get('http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalGroup/shortTerm/{}'.format(ssyk_number))
         else:
@@ -107,14 +106,16 @@ class Forecaster:
         except:
             # Make sure it works
             return None
-    
+
+        
         # Get which format we want the output in
         out_format = options[output_format][option]
 
+
+        
         # Get current demand and future demand in text format
         year = request_json[0][out_format]
-        return year   	
-
+        return year
 
 if __name__ == '__main__':
     search_text = input("Describe what you want to work with: ")

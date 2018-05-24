@@ -25,6 +25,12 @@ class SearchInterface:
         self.current_year_forecast = ''
         self.one_year_forecast = ''
         self.five_year_forecast = ''
+
+        # Get the number on a scale from 1-5 instead of text
+        self.current_year_forecast_number = ''
+        self.one_year_forecast_number = ''
+        self.five_year_forecast_number = ''
+        
         # Meetup events based on matched job tittle 
         self.meetup_events = ''
 
@@ -60,8 +66,16 @@ class SearchInterface:
             self.one_year_forecast = self.forecaster.get_prognosis( self.ssyk, option='one' )
             self.five_year_forecast = self.forecaster.get_prognosis( self.ssyk, option='five' )
 
+            # Same as above but for numbers
+            self.current_year_forecast_number = int(self.forecaster.get_prognosis( self.ssyk, output_format='number', option='now' ))
+            self.one_year_forecast_number = int(self.forecaster.get_prognosis( self.ssyk, output_format='number', option='one' ))
+            self.five_year_forecast_number = int(self.forecaster.get_prognosis( self.ssyk, output_format='number', option='five' ))
 
-
+            # Times 20 to format.
+            self.current_year_forecast_number = self.current_year_forecast_number * 20
+            self.one_year_forecast_number = self.one_year_forecast_number * 20
+            self.five_year_forecast_number = self.five_year_forecast_number * 20
+            
         # HERE WE SHOULD ALSO UPDATE THE FORECAST
 
 
