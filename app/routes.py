@@ -13,7 +13,7 @@ def index():
     if form.validate_on_submit():
         interface = SearchInterface()
         interface.search_job(form.query.data)
-        return render_template('results.html', interface=interface)
+        return render_template('results.html', form=form, interface=interface)
     return render_template('index.html', title='Sign In', form=form)
 
 @app.route('/about')

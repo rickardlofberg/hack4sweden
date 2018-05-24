@@ -1,43 +1,111 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 
-<h3> Best job match: </h3>
-<ul>
-  <li>
-    {{ interface.top_job }}
-  </li>
-</ul>
-<h3> Other jobs: </h3>
-<ul>
-  {% for job in interface.top_jobs[1:] %}
-    <li> {{ job[0] }} </li>
-  {% endfor %}
-</ul>
+<div class="col-xs-12 col-md-12 col-lg-12">
 
-<h2> Taxonomy job </h2>
-<ul>
-  <li>
-    {{ interface.taxonomy_job }}
-  </li>
-</ul>
+  <!-- Start of row with search and text -->
+  <div class="row">
+    
+    <!-- projectSection -->
+    <div class="mainContainer col-xs-12 col-md-12 col-lg-6">
+      
+      <!-- Made this link dynamic -->
+      <img src="{{ url_for('static', filename='images/test.jpeg') }}"  alt="TBC" class="image" width=100%>
 
-<h2> Current forecast </h2>
-<p>
-  {{ interface.current_year_forecast }}
-</p>
+      <!-- searchEngine -->
+      <div class="middleSearch">
+	
+	<!-- Dynamic page here as well -->
+	<form action="{{ url_for('index') }}" method="POST" class="navbar-form navbar-right">
+	  {{ form.hidden_tag() }}
+	  
+	  <div class="input-group col-xs-12 col-md-12 col-lg-12">
+	    {{ form.query(size=32) }}
+	    {{ form.search() }}
 
-<h2> One year forecast </h2>
-<p>
-  {{ interface.one_year_forecast }}
-</p>
+	    <!-- Need to check on how to integrate the style of buttons with code -->
+	    <!--     <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
+		     <button type="submit" class="btn btn-success">Search</button> -->
+	  </div>
+	</form>
+      </div>
+      <!-- End of searchEngine -->
+    </div>
+    <!-- End of projectSection -->
 
-<h2> Five year forecast </h2>
-<p>
-  {{ interface.five_year_forecast }}
-</p>
+    <!-- Right side -->
+    <div class="col-xs-12 col-md-12 col-lg-6" style="float:left;">
 
-<h2>Events nära dig</h2>
+      <!-- Start: Row containing right side --> 
+      <div class="row">
+	
+	<!-- Start: Left side of the right side -->
+	<div class="col-xs-6 col-md-6 col-lg-6">
+	  <h3> Best job match: </h3>
+	  <ul>
+	    <li>
+	      {{ interface.top_job }}
+	    </li>
+	  </ul>
 
-{% endblock %}
+	  <h3> Taxonomy job </h3>
+	  <ul>
+	    <li>
+	      {{ interface.taxonomy_job }}
+	    </li>
+	  </ul>
+
+	  <h3> Current forecast </h3>
+	  <p>
+	    {{ interface.current_year_forecast }}
+	  </p>
+
+	  <h3> One year forecast </h3>
+	  <p>
+	    {{ interface.one_year_forecast }}
+	  </p>
+
+	  <h3> Five year forecast </h3>
+	  <p>
+	    {{ interface.five_year_forecast }}
+	  </p>
+	</div>
+	<!-- End: Left side of the right side -->
+
+	<!-- Start: Right side of the left side -->
+	<div class="col-xs-6 col-md-6 col-lg-6">
+	  <h3> Other jobs: </h3>
+	  <ul>
+	    <!-- Show only job 1 - 10 -->
+	    {% for job in interface.top_jobs[1:11] %}
+	    <li> {{ job[0] }} </li>
+	    {% endfor %}
+	  </ul>
+	</div>
+	<!-- End: Right side of the left side -->
+      </div>
+      <!-- End left side -->
+    </div>
+    <!-- End: Row containing right side --> 
+  </div>
+  <!-- End of row containing search and text -->
+  
+  <br>
+  <p>Here I will be placing a carousel of different events</p>
+  <h2>Events nära dig</h2>
+  <ul>
+    {% for event in interface.meetup_events['events'] %}
+    <li>
+      {{ event['name'] }}
+      <br>
+      {{ event['venue']['city']  }}
+      {% endfor %}
+  </ul>
+  
+  <!-- This should be implemented in the future
+  <div id="entireBodyDivId" class="flex-container">
+  </div>
+  -->
+  
+  {% endblock %}

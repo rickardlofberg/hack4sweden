@@ -3,37 +3,52 @@
 {% block content %}
 
 <div class="col-xs-12 col-md-12 col-lg-12">
-<!-- projectSection -->
-<div class="mainContainer">
-  
-  <!-- Made this link dynamic -->
-  <img src="{{ url_for('static', filename='images/test.jpeg') }}"  alt="TBC" class="image" width=100%>
 
-<!-- searchEngine -->
-<div class="middleSearch">
-  
-  <!-- Dynamic page here as well -->
-  <form action="{{ url_for('index') }}" method="POST" class="navbar-form navbar-right">
-    {{ form.hidden_tag() }}
+  <!-- Start of row with search and text -->
+  <div class="row">
     
-    <div class="input-group col-xs-6">
-      {{ form.query(size=32) }}
-      {{ form.search() }}
+    <!-- projectSection -->
+    <div class="mainContainer col-xs-12 col-md-12 col-lg-6">
+      
+      <!-- Made this link dynamic -->
+      <img src="{{ url_for('static', filename='images/test.jpeg') }}"  alt="TBC" class="image" width=100%>
 
-      <!-- Need to check on how to integrate the style of buttons with code -->
-      <!--     <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
-               <button type="submit" class="btn btn-success">Search</button> -->
+      <!-- searchEngine -->
+      <div class="middleSearch">
+	
+	<!-- Dynamic page here as well -->
+	<form action="{{ url_for('index') }}" method="POST" class="navbar-form navbar-right">
+	  {{ form.hidden_tag() }}
+	  
+	  <div class="input-group col-xs-12 col-md-12 col-lg-12">
+	    {{ form.query(size=32) }}
+	    {{ form.search() }}
+
+	    <!-- Need to check on how to integrate the style of buttons with code -->
+	    <!--     <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
+		     <button type="submit" class="btn btn-success">Search</button> -->
+	  </div>
+	</form>
+      </div>
+      <!-- End of searchEngine -->
     </div>
-  </form>
-</div>
-<!-- End of searchEngine -->
-</div>
-<!-- End of projectSection -->
-<div style="float:left;">Introductory text placed on the right side of the picture</div>
-</div>
-<br>
-<p>Here I will be placing a carousel of different events</p>
-<div id="entireBodyDivId" class="flex-container">
-</div>
+    <!-- End of projectSection -->
 
-{% endblock %}
+    <!-- Start: Right side -->
+    <div class="col-xs-12 col-md-12 col-lg-6" style="float:left;">
+      Introductory text placed on the right side of the picture
+    </div>
+    <!-- End: Right side -->
+
+  </div>
+  <!-- End of row containing search and text -->
+  
+  <br>
+  <p>Here I will be placing a carousel of different events</p>
+
+    <!-- This should be implemented in the future
+  <div id="entireBodyDivId" class="flex-container">
+  </div>
+  -->
+
+  {% endblock %}
