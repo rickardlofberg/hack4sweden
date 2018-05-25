@@ -126,6 +126,7 @@
   <br>
   <p>Here I will be placing a carousel of different events</p>
   <h2>Events nära dig</h2>
+  {% if interface.meetup_event|length > 0 %}
   <ul>
     {% for event in interface.meetup_events['events'] %}
     <li>
@@ -134,6 +135,7 @@
       {{ event['venue']['city']  }}
       {% endfor %}
   </ul>
+  {% endif %}
   
   <!-- This should be implemented in the future
   <div id="entireBodyDivId" class="flex-container">

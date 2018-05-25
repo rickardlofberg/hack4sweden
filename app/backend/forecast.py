@@ -18,6 +18,7 @@ class Forecaster:
         job_to_ssyk = dict()
         job_to_prognosis_id = dict()
 
+        # Get path to file
         SITE_ROOT = os.path.realpath(os.path.dirname(__name__))
         json_url = os.path.join(SITE_ROOT, "app/static/data", "ssyk.json")
 

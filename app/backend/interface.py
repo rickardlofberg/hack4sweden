@@ -2,7 +2,8 @@ from app.backend import forecast
 from app.backend import ontology
 from app.backend import meetup
 import json
-
+import os
+from time import gmtime, strftime
 
 class SearchInterface:
 
@@ -40,6 +41,17 @@ class SearchInterface:
     def search_job( self, search_query ):
         """ Searches for a job and update all the relevant
         variables with matching data """
+
+        # Log the queries
+        # Get path to file
+        SITE_ROOT = os.path.realpath(os.path.dirname(__name__))
+        log_url = os.path.join(SITE_ROOT, "app/static/data", "query_log")
+        
+        with open(log_url, 'a') as log:
+            time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+            msg = "{}: {}\n".format(time, search_query)
+            log.write(msg)
+        
 
         # Set the lateset search
         self.latest_query = search_query
