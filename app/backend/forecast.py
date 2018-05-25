@@ -1,15 +1,14 @@
 import requests
 from distance import levenshtein as lev
 import app.backend.ontology
-
+import json
+import os
 
 class Forecaster:
 
-    def __init__(self, url_to_forecast='http://api.arbetsformedlingen.se:80/af/v2/forecasts/occupationalArea/forcastsRefs/list'):
+    def __init__(self):
         # Initiate the forecast object and get forecast data
-        self.job_ssyk, self.job_forecastId  = self.__forecast_init( url_to_forecast )
-        
-        
+        self.job_ssyk, self.job_forecastId  = self.__forecast_init( url_to_forecast )  
 
     def __forecast_init(self, url_to_forecast):
         """ Helper method to initiate the forecast object.
@@ -18,16 +17,12 @@ class Forecaster:
         # job_to_ssyk and job_to_prog dicts
         job_to_ssyk = dict()
         job_to_prognosis_id = dict()
-        
-        request = requests.get(url_to_forecast)
 
-        # Avoid brekage if URL data is not correct
-        try:
-            # Read the data as json
-            data = request.json()
-        except:
-            # If URL is not correct, return None
-            return None
+        SITE_ROOT = os.path.realpath(os.path.dirname(__name__))
+        json_url = os.path.join(SITE_ROOT, "app/static/data", "ssyk.json")
+
+        with open(json_url, 'r') as ssyk_data:
+            data = json.load(ssyk_data)
 
         # Go through each jobtitle and create two dicts
         # job_to_ssyk : job_title -> ssyk
@@ -35,7 +30,6 @@ class Forecaster:
         for job in data[0]["occupationPrognosisRefs"]:
             job_to_ssyk[job['heading'].lower()] = job['ssyk']
             job_to_prognosis_id[job['heading'].lower()] = job['prognosisId']
-            
 
         return job_to_ssyk, job_to_prognosis_id
 
