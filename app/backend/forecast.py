@@ -8,9 +8,9 @@ class Forecaster:
 
     def __init__(self):
         # Initiate the forecast object and get forecast data
-        self.job_ssyk, self.job_forecastId  = self.__forecast_init( url_to_forecast )  
+        self.job_ssyk, self.job_forecastId  = self.__forecast_init()  
 
-    def __forecast_init(self, url_to_forecast):
+    def __forecast_init(self):
         """ Helper method to initiate the forecast object.
         Returns a dictionary with ....
         """
