@@ -1,54 +1,159 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="col-xs-12 col-md-12 col-lg-12">
+<!--Main layout-->
+    <main class="mt-5">
+        <div class="container">
 
-  <!-- Start of row with search and text -->
-  <div class="row">
-    
-    <!-- projectSection -->
-    <div class="mainContainer col-xs-12 col-md-12 col-lg-6">
-      
-      <!-- Made this link dynamic -->
-      <img src="{{ url_for('static', filename='images/test.jpeg') }}"  alt="TBC" class="image" width=100%>
+            <!--Section: Best Features-->
+            <section id="best-features" class="text-center">
 
-      <!-- searchEngine -->
-      <div class="middleSearch">
-	
-	<!-- Dynamic page here as well -->
-	<form action="{{ url_for('index') }}" method="POST" class="navbar-form navbar-right">
-	  {{ form.hidden_tag() }}
-	  
-	  <div class="input-group col-xs-12 col-md-12 col-lg-12">
-	    {{ form.query(size=32) }}
-	    {{ form.search() }}
+                <!-- Heading -->
+                <h2 class="mb-5 font-weight-bold">Our mission</h2>
 
-	    <!-- Need to check on how to integrate the style of buttons with code -->
-	    <!--     <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
-		     <button type="submit" class="btn btn-success">Search</button> -->
-	  </div>
-	</form>
-      </div>
-      <!-- End of searchEngine -->
-    </div>
-    <!-- End of projectSection -->
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center mb-4">
 
-    <!-- Start: Right side -->
-    <div class="col-xs-12 col-md-12 col-lg-6" style="float:left;">
-      Introductory text placed on the right side of the picture
-    </div>
-    <!-- End: Right side -->
+                    <!--Grid column-->
+                    <div class="col-md-8">
 
-  </div>
-  <!-- End of row containing search and text -->
-  
-  <br>
-  <p>Here I will be placing a carousel of different events</p>
+                        <!-- Description -->
+                        <p class="grey-text">To facilitate job seeking and enable establishing oneself/family for newcomers in Sweden Build social networks relevant to skills e.g. Engineers finds engineers.</p>
 
-    <!-- This should be implemented in the future
-  <div id="entireBodyDivId" class="flex-container">
-  </div>
-  -->
+                    </div>
+                    <!--Grid column-->
 
-  {% endblock %}
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-4 mb-5">
+                        <i class="fa fa-camera-retro fa-4x orange-text"></i>
+                        <h4 class="my-4 font-weight-bold">Stockholm</h4>
+                        <p class="grey-text">Description of Stockholm</p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-4 mb-1">
+                        <i class="fa fa-heart fa-4x orange-text"></i>
+                        <h4 class="my-4 font-weight-bold">Göteborg</h4>
+                        <p class="grey-text">Description of Göteborg</p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-4 mb-1">
+                        <i class="fa fa-bicycle fa-4x orange-text"></i>
+                        <h4 class="my-4 font-weight-bold">Malmö</h4>
+                        <p class="grey-text">Description of Malmö</p>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </section>
+            <!--Section: Best Features-->
+
+            <hr class="my-5">
+
+            <!--Section: Examples-->
+            <section id="examples" class="text-center">
+
+                <!-- Heading -->
+                <h2 class="mb-5 font-weight-bold">Examples</h2>
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-6 mb-4">
+
+                        <div class="view overlay z-depth-1-half">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/images/48.jpg" class="img-fluid" alt="">
+                            <div class="mask rgba-white-slight"></div>
+                        </div>
+
+                        <h4 class="my-4 font-weight-bold">System Developer</h4>
+                        <p class="grey-text">Anecdote on using NET4YOU</p>
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-6 mb-6">
+
+                        <div class="view overlay z-depth-1-half">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="">
+                            <div class="mask rgba-white-slight"></div>
+                        </div>
+
+                        <h4 class="my-4 font-weight-bold">Some other proffession and their story of success</h4>
+                        <p class="grey-text">Same anecdote</p>
+
+                    </div>
+                    <!--Grid column-->
+
+            </section>
+            <!--Section: Examples-->
+
+            <hr class="my-5">
+
+            <!--Section: Contact-->
+            <section id="contact">
+
+                <!-- Heading -->
+                <h2 class="mb-5 font-weight-bold text-center">Contact us</h2>
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-lg-5 col-md-12">
+
+                        <!-- Form contact -->
+                        <form class="p-5">
+
+                          <div class="md-form form-sm"> <i class="fa fa-user prefix grey-text"></i>
+                            <input type="text" id="form3" class="form-control form-control-sm">
+                            <label for="form3">Your name</label>
+                          </div>
+
+                          <div class="md-form form-sm"> <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="text" id="form2" class="form-control form-control-sm">
+                            <label for="form2">Your email</label>
+                          </div>
+
+                          <div class="md-form form-sm"> <i class="fa fa-tag prefix grey-text"></i>
+                            <input type="text" id="form32" class="form-control form-control-sm">
+                            <label for="form34">Subject</label>
+                          </div>
+
+                          <div class="md-form form-sm"> <i class="fa fa-pencil prefix grey-text"></i>
+                            <textarea type="text" id="form8" class="md-textarea form-control form-control-sm" rows="4"></textarea>
+                            <label for="form8">Your message</label>
+                          </div>
+
+                          <div class="text-center mt-4">
+                            <button class="btn btn-primary">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+                          </div>
+                        </form>
+                        <!-- Form contact -->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+
+            </section>
+            <!--Section: Contact-->
+
+        </div>
+    </main>
+    <!--Main layout-->
+
+{% endblock %}

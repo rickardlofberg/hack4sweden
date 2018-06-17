@@ -1,71 +1,232 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>TBC</title>
+<html lang="en">
 
-    <!-- Link to css and js in a dynamic way -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>NetworkForYou- Assisting your journey to success in Sweden</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='javascript/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url_for('static', filename='javascript/jquery-3.2.1.js') }}" type="text/javascript"></script>
-    <script src="{{ url_for('static', filename='javascript/home.js') }}" type="text/javascript"></script>
-  </head>
-  
-  <body>
-    <!-- Simple header start -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-	<div class="navbar-header">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.css') }}" rel="stylesheet">
+    <!-- Our custom styles -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
 
-	  <!-- Another dynamic link -->
-          <a class="navbar-brand" href="{{ url_for('index') }}">THEBREAKFASTCLUB</a>
-	</div>
-	
-	<ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meny
-              <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+<body>
+    <!--Main Navigation-->
+    <header>
 
-	      <!-- Link to other pages in dynamic way, all of these are set to about since 
-		   no other page has been created -->
-              <li><a href="{{ url_for('about') }}">Om oss</a></li>
-              <li><a href="{{ url_for('about') }}">Kundtjänst</a></li>
-              <li><a href="{{ url_for('about') }}">Kontakt Oss</a></li>
-              <li><a href="{{ url_for('about') }}">Admin</a></li>
-            </ul>
-          </li>
-	</ul>
-	
-	<!-- Javascript search engine -->
-	<form class="navbar-form navbar-right">
-          <div class="input-group">
-            <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
-          </div>
-          <div id="searchResult">
-          </div>
-	</form>
-      </div>  
-    </nav>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
 
-    <div class="startContainer col-xs-12 col-md-12 col-lg-12">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="#">NETWORK4YOU</a>
+
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#intro">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Our Mission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Our Vision</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cities">Cities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- Links -->
+
+                    <!-- Social Icon  -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Collapsible content -->
+
+            </div>
+        </nav>
+        <!--/.Navbar-->
+
+
+        <!--Mask-->
+        <div id="intro" class="view">
+
+            <div class="mask rgba-black-strong">
+
+                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+                     <!-- Start of row with search and text -->
+  <div class="row d-flex justify-content-center text-center">
+    
+    <!-- projectSection -->
+    <div class="mainContainer col-xs-12 col-md-12 col-lg-6">
+      
+        <!-- Heading -->
+        <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Find your dream job in Sweden with us</h2>
+
+        <!-- Divider -->
+        <hr class="hr-light">
+
+      <!-- Made this link dynamic -->
+      <img src="{{ url_for('static', filename='images/other/Jobs.jpeg') }}"  alt="TBC" class="image" width=100%>
+
+      <!-- searchEngine -->
+      <div class="middleSearch">
+  
+  <!-- Dynamic page here as well -->
+  <form action="{{ url_for('index') }}" method="POST" class="navbar-form navbar-right">
+    {{ form.hidden_tag() }}
+    
+    <div class="input-group col-xs-12 col-md-12 col-lg-12">
+      {{ form.query(size=32) }}
+      {{ form.search() }}
+
+      <!-- Need to check on how to integrate the style of buttons with code -->
+      <!--     <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchForOccupation();">
+         <button type="button" class="btn btn-outline-white">Search<i class="fa fa-book ml-2"></i></button> -->
+    </div>
+  </form>
+      </div>
+      <!-- End of searchEngine -->
+    </div>
+    <!-- End of projectSection -->
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!--/.Mask-->
+
+    </header>
+    <!--Main Navigation-->
 
       <!-- All the content in the middle goes in here. 
-	The tempalte of this code will wrap around it. -->
+	    The tempalte of this code will wrap around it. -->
       
-      {% block content %}{% endblock %}
+      {% block content %}
+      {% endblock %}
 
-      <footer>
-	<!-- Link to other pages in dynamic way, all of these are set to about since 
-	     no other page has been created -->
-	<a href="{{ url_for('about') }}">Användarvillkor</a>
-	<a href="{{ url_for('about') }}">Cookie-inställningar</a>
-	<a href="{{ url_for('about') }}">Kontakta oss</a>
-      </footer>
+        <!-- End of the body -->
       
-    </div><!-- End of pageContent --> 
-    
-  </body>
+
+    <!--Footer-->
+    <footer class="page-footer font-small unique-color-dark pt-0">
+
+        <!-- Social buttons -->
+        <div class="primary-color">
+            <div class="container">
+                <!--Grid row-->
+                <div class="row py-4 d-flex align-items-center">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                        <h6 class="mb-0 white-text">Get connected with us on social networks!</h6>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 col-lg-7 text-center text-md-right">
+                        <!--Facebook-->
+                        <a class="fb-ic ml-0">
+                            <i class="fa fa-facebook white-text mr-4"> </i>
+                        </a>
+                        <!--Twitter-->
+                        <a class="tw-ic">
+                            <i class="fa fa-twitter white-text mr-4"> </i>
+                        </a>
+                        <!--Google +-->
+                        <a class="gplus-ic">
+                            <i class="fa fa-google-plus white-text mr-4"> </i>
+                        </a>
+                        <!--Linkedin-->
+                        <a class="li-ic">
+                            <i class="fa fa-linkedin white-text mr-4"> </i>
+                        </a>
+                        <!--Instagram-->
+                        <a class="ins-ic">
+                            <i class="fa fa-instagram white-text mr-lg-4"> </i>
+                        </a>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+            </div>
+        </div>
+        <!-- Social buttons -->
+
+        <!--Footer Links-->
+        <div class="container mt-5 mb-4 text-center text-md-left">
+            <div class="row mt-3">
+
+                <!--First column-->
+                <div class="col-md-12 col-lg-12 col-xl-12 mb-12">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <strong>Net4You Team 2018</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>Don't hesitate to contact us</p>
+                </div>
+                <!--/.First column-->
+
+
+            </div>
+        </div>
+      
+     <!--/.Footer Links-->
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href=""> TBC </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS placed at the bottom for optimized experience -->
+    <!-- JQuery -->
+  
+    <script type="text/javascript" src=" {{ url_for('static', filename='js/js/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src=" {{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+
+</body>
+
 </html>

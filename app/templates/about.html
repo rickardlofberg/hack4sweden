@@ -1,58 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>TBC</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/home.css">
-    <script src="../static/javascript/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../static/javascript/jquery-3.2.1.js" type="text/javascript"></script>
-    <script src="../static/javascript/home.js" type="text/javascript"></script>
-
-</head>
-    
-<body>
-
-  <!-- Header start -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-    <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">THEBREAKFASTCLUB</a>
-    </div>
-        
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meny
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                          <li><a href="#">Om oss</a></li>
-                          <li><a href="#">Kundtjänst</a></li>
-                          <li><a href="#">Kontakt Oss</a></li>
-                          <li><a href="adminPage.html">Admin</a></li>
-                </ul>
-        </li>
-    </ul>
-  
-<form class="navbar-form navbar-right">
-    <div class="input-group">
-        <input type="text" class="inputField" id="searchInputField" placeholder="Search" onkeyup="searchMovie();"><a class href="html/cartPage.html"><i class="glyphicon glyphicon-shopping-cart"><span class="cartSpan"></span></i></a>
-    </div>
-    <div id="searchResult"></div>
-</form>
-</div>
-   
-</nav>
-<!-- Header end -->
-
+{% extends "base.html" %}
+{% block content %}
 <!-- Start for body -->
 
 <!-- Page content -->
 <div class="col-xs-12" style="max-width:1564px; padding:50px; border:1px solid red;">
-
-  <!-- Project Section -->
-  <div class="col-xs-3" id="indexHeader">
-    <h3 class="col-xs-12">The Breakfast Club</h3>
-  </div>
 
       
   <!-- Container for the entire body -->
@@ -89,43 +40,4 @@
 <!-- Google Map -->
 <div id="googleMap" style="width:100%;height:450px;"></div>
 
-
-          <footer>
-              <a href="#">Användarvillkor</a>
-              <a href="#">Cookie-inställningar</a>
-              <a href="about.html">Kontakta oss</a>
-          </footer>
-
-</div>
-
-</body>
-</html>
-
-<!-- {% extends "base.html" %}
-
-{% block content %}
-
-
-<div class="col-lg-8 col-lg-offset-4 text-center">
-<h3>
-  <cite>
-    “Breaching the gap between newcomers and the job market by providing networking and job forecast.”
-  </cite>
-</h3>
-
-<h3> Mission </h3>
-
-To facilitate job seeking and enable establishing oneself/family for newcomers in Sweden Build social networks relevant to skills e.g. Engineers finds engineers.
-
-<h3> Vision </h3>
-
-To decrease the discrimination and increase opportunities for all people in the society Decrease overqualification on the job market / Matching skills better
-
-<h3> Purpose </h3>
-
-<p>
-  Today it takes about 5 years for a newcomer to become employed in Sweden. A lot can happen in 5 years! A third of newcomers have an education equal to or higher than high school diploma (they have an easier time finding a job). Today it takes ~5 years to get a job, for newcomers. Social networking can lead to finding relevant contacts within one’s field of work. It also helps developing language skills. So, not only is properly guided job seeking important but so is associative time, where networking can enable connecting with the right people. This can increase better matchmaking between job and skills. We present a service that through user input suggests related occupations to their skills and suggesting meet-ups events related to their interests. This is done through combining Arbetsförmedlingen APIs and an open source API from Meetup.
-</p>
-
-
-{% endblock %} -->
+{% endblock %}
